@@ -327,6 +327,10 @@ scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.chestClosed, function (sp
     game.gameOver(true)
     game.setGameOverEffect(true, effects.confetti)
 })
+scene.onOverlapTile(SpriteKind.Player, sprites.builtin.oceanSand0, function (sprite, location) {
+    game.splash("Mundo 3", "El oceano")
+    tiles.placeOnTile(mySprite, tiles.getTileLocation(17, 83))
+})
 sprites.onOverlap(SpriteKind.Enemy, SpriteKind.Player, function (sprite, otherSprite) {
     info.changeLifeBy(-1)
     light.showAnimation(light.sparkleAnimation, 500)
