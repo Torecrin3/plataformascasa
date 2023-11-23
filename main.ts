@@ -323,6 +323,10 @@ controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
     sprites.destroy(myEnemy, effects.spray, 100)
     sprites.destroy(myEnemy, effects.spray, 100)
 })
+scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.chestClosed, function (sprite, location) {
+    game.gameOver(true)
+    game.setGameOverEffect(true, effects.confetti)
+})
 sprites.onOverlap(SpriteKind.Enemy, SpriteKind.Player, function (sprite, otherSprite) {
     info.changeLifeBy(-1)
     light.showAnimation(light.sparkleAnimation, 500)
@@ -332,6 +336,10 @@ info.onLifeZero(function () {
     game.setGameOverMessage(false, "GAME OVER!")
     info.startCountdown(3)
     game.reset()
+})
+scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.hazardHole, function (sprite, location) {
+    game.splash("Mundo 2", "El espacio")
+    tiles.placeOnTile(mySprite, tiles.getTileLocation(17, 83))
 })
 sprites.onDestroyed(SpriteKind.Enemy, function (sprite) {
     myEnemy = sprites.create(img`
